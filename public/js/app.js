@@ -52,8 +52,6 @@ jQuery(function ($) {
 				}.bind(this)
 			}).init('/all');
 		},
-		// accepts an element from inside the `.item` div and
-		// returns the corresponding index in the `todos` array
 		bindEvents: function () {
 			$('#new-todo').on('keyup', this.create.bind(this));
 			$('#toggle-all').on('change', this.toggleAll.bind(this));
@@ -76,7 +74,7 @@ jQuery(function ($) {
 		},
 		renderFooter: function () {
 			var todoCount = this.todos.length;
-			var activeTodoCount = this.getActiveTodos().length
+			var activeTodoCount = this.getActiveTodos().length;
 			var template = this.footerTemplate({
 				activeTodoCount: activeTodoCount,
 				activeTodoWord: util.pluralize(activeTodoCount, 'item'),
@@ -101,7 +99,7 @@ jQuery(function ($) {
 			});
 		},
 		getCompletedTodos: function () {
-			return this.todos.filer(function (todo) {
+			return this.todos.filter(function (todo) {
 				return todo.completed;
 			});
 		},
@@ -121,6 +119,8 @@ jQuery(function ($) {
 			this.filter = 'all';
 			this.render();
 		},
+		// accepts an element from inside the `.item` div and
+		// returns the corresponding index in the `todos` array
 		indexFromEl: function (el) {
 			var id = $(el).closest('li').data('id');
 			var todos = this.todos;
@@ -194,4 +194,3 @@ jQuery(function ($) {
 
 	App.init();
 });
-
